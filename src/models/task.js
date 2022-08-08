@@ -5,4 +5,6 @@ const taskShema = mongoose.Schema({
     completed: {type: Boolean, default: false}
 })
 
-module.exports = mongoose.model('Task', taskShema)
+const Task = mongoose.model('Task', taskShema)
+
+module.exports = Task

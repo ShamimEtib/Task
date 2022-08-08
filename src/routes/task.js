@@ -49,7 +49,10 @@ router.patch('/:id', async(req, res) => {
     }
 
     try {
-        const task = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
+        const task = await Task.findById(req.params.id)
+        updates.forEach(update => { task[update] = req.body[update]})
+        await task.save()
+        //const task = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
         if (!task) {
             return res.status(404).send()
         }
@@ -66,7 +69,7 @@ router.delete(('/:id'),async(req, res) => {
         if (!task) {
             return res.status(404).send()
         }
-        res.send(user)
+        res.send(task)
     } catch (e) {
         res.status(500).send(e)
     }
