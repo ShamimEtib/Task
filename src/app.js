@@ -6,12 +6,11 @@ const taskRoutes = require('./routes/task')
 const multer = require('multer')
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 app.use(express.json())
 
-const mongoURL = "mongodb+srv://task-user:task-shop@cluster0.gxakctf.mongodb.net/?retryWrites=true&w=majority"
-mongoose.connect(mongoURL)
+mongoose.connect(process.env.API_KEY)
 //mongoose.Promise = global.Promise
 
 // const upload = multer({
